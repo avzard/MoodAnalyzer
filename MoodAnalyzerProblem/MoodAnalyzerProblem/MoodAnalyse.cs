@@ -1,40 +1,51 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-/// <summary>
-/// MoodAanalyse Class To Check The Mood And Respond.
-/// </summary>
-public class MoodAnalyse
+namespace MoodAnaliserNunitTest
 {
-    //Variable
-    private string message;
-
-    /// <summary>
-    /// Default Constructor
-    /// </summary>s
-    public MoodAnalyse() { }
-
-    /// <summary>
-    /// Parameterised Constructor.
-    /// </summary>
-    /// <param name="message"></param>
-    public MoodAnalyse(string message)
+    public class MoodAnalyser
     {
-        this.message = message;
-    }
-    /// <summary>
-    /// AnalyseMood Function To Check The Mood And Respond HAPPY or SAD.
-    /// </summary>
-    /// <param name="message"></param>
-    /// <returns></returns>
-    public string AnalyseMood()
-    {
-        if (this.message.Contains("Sad"))
+        public string message;
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
+        public MoodAnalyser()
         {
-            return "SAD";
+
         }
-        else
+        /// <summary>
+        /// Parameterised Constructor
+        /// </summary>
+        public MoodAnalyser(string message)
         {
-            return "HAPPY";
+            this.message = message.ToUpper();
         }
+        public string AnalyseMoodWithoutConstructor(string message)
+        {
+            if (message.ToLower().Contains("sad"))
+                return "SAD";
+
+            else return "HAPPY";
+
+        }
+        //UC-2 Using Try Catch Blocks to Handle Null Exception.
+        public string AnalyseMood()
+        {
+            try
+            {
+                if (message.ToLower().Contains("sad"))
+                    return "SAD";
+                else return "HAPPY";
+            }
+            catch (NullReferenceException)
+            {
+                return "HAPPY";
+            }
+
+        }
+
     }
 }

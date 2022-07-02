@@ -1,36 +1,73 @@
 using NUnit.Framework;
 
-namespace MoodAnalyzerTest
+
+namespace MoodAnaliserNunitTest
 {
-    /// <summary>
-    /// MoodAnalyseTest Class for Test Cases.
-    /// </summary>
-    public class MoodAnalyseTest
+    public class Tests
     {
+        MoodAnalyser moodAnalyser;
+        [SetUp]
+        public void Setup()
+        {
+            moodAnalyser = new MoodAnalyser();
+        }
         /// <summary>
-        /// Test Case 1.1 if given Sad mood then should return SAD.
+        /// TC1.1 Given “I am in Sad Mood” message Should Return SAD
         /// </summary>
         [Test]
-        public void GivenSadMoodShouldReturnSAD()
+        public void GivenMessage_WhenSad_ShouldReturnSadParameterLess_Constructor()
         {
-            string expected = "SAD";
-            string message = "I am in Sad Mood";
-            MoodAnalyse moodAnalyse = new MoodAnalyse(message);
-            string mood = moodAnalyse.AnalyseMood();
-            Assert.AreEqual(expected, mood);
+            //Arrange
+            moodAnalyser = new MoodAnalyser();
+            string msg = "I am in SAD mood";
+            //Act
+            string message = moodAnalyser.AnalyseMoodWithoutConstructor(msg);
+            //Assert
+            Assert.AreEqual("SAD", message);
+        }
+        /// <summary>
+        /// TC1.2 Given “I am in Any Mood” message Should Return HAPPY
+        /// </summary>
+        [Test]
+        public void GivenMessage_WhenAnyMood_ShouldReturnHappyParameterLess_Constructor()
+        {
+            moodAnalyser = new MoodAnalyser();
+            string msg = "I am in Any mood";
+            string message = moodAnalyser.AnalyseMoodWithoutConstructor(msg);
+            Assert.AreEqual("HAPPY", message);
+        }
+        /// <summary>
+        /// TC1.1 Given “I am in Sad Mood” message in Constructor Should Return SAD
+        /// </summary>
+        [Test]
+        public void GivenMessage_WhenSad_ShouldReturnSad()
+        {
+            moodAnalyser = new MoodAnalyser("I am in Sad mood");
+            string message = moodAnalyser.AnalyseMood();
+            Assert.AreEqual("SAD", message);
+        }
+        /// <summary>
+        /// TC1.2 Given “I am in Happy Mood” message in Constructor Should Return SAD
+        /// </summary>
+        [Test]
+        public void GivenMessage_WhenHappy_ShouldReturnHappy()
+        {
+            moodAnalyser = new MoodAnalyser("I am in Happy mood");
+            string message = moodAnalyser.AnalyseMood();
+            Assert.AreEqual("HAPPY", message);
+        }
+        //UC-2
+        /// <summary>
+        /// TC2.1Given Null Mood Should Return Happy To make this Test Case pass Handle
+        /// NULL Scenario using try catch and return Happy
+        /// </summary>
+        [Test]
+        public void GivenMessage_WhenNull_ShouldReturnHappy()
+        {
+            moodAnalyser = new MoodAnalyser();
+            string message = moodAnalyser.AnalyseMood();
+            Assert.AreEqual("HAPPY", message);
         }
 
-        /// <summary>
-        /// Test Case 1.2 given Any Mood Should Return HAPPY.
-        /// </summary>
-        [Test]
-        public void GivenAnyMoodShouldReturnHAPPY()
-        {
-            string expected = "HAPPY";
-            string message = "I am in Any Mood";
-            MoodAnalyse moodAnalyse = new MoodAnalyse(message);
-            string mood = moodAnalyse.AnalyseMood();
-            Assert.AreEqual(expected, mood);
-        }
     }
 }
