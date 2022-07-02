@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoodAnalyzer;
+using System;
 
 /// <summary>
 /// MoodAanalyse Class To Check The Mood And Respond.
@@ -32,7 +33,11 @@ public class MoodAnalyse
     {
         try
         {
-            if (this.message.Contains("Sad"))
+            if (message.Length == 0)
+            {
+                throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.ENTERED_EMPTY, "Please Enter Proper Mood");
+            }
+            if (this.message.Contains("Sad", StringComparison.OrdinalIgnoreCase))
             {
                 return "SAD";
             }
@@ -41,10 +46,9 @@ public class MoodAnalyse
                 return "HAPPY";
             }
         }
-        catch
+        catch (NullReferenceException exception)
         {
-            return "HAPPY";
+            throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.ENTERED_NULL, "Please Enter Proper Mood");
         }
     }
-
 }
