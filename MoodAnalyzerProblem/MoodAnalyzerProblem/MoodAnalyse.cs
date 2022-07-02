@@ -1,51 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MoodAnaliserNunitTest
+/// <summary>
+/// MoodAanalyse Class To Check The Mood And Respond.
+/// </summary>
+public class MoodAnalyse
 {
-    public class MoodAnalyser
+    //Variable
+    private string message;
+
+    /// <summary>
+    /// Default Constructor
+    /// </summary>
+    public MoodAnalyse() { }
+
+    /// <summary>
+    /// Parameterised Constructor.
+    /// </summary>
+    /// <param name="message"></param>
+    public MoodAnalyse(string message)
     {
-        public string message;
-        /// <summary>
-        /// Default Constructor
-        /// </summary>
-        public MoodAnalyser()
-        {
+        this.message = message;
+    }
 
-        }
-        /// <summary>
-        /// Parameterised Constructor
-        /// </summary>
-        public MoodAnalyser(string message)
-        {
-            this.message = message.ToUpper();
-        }
-        public string AnalyseMoodWithoutConstructor(string message)
-        {
-            if (message.ToLower().Contains("sad"))
-                return "SAD";
 
-            else return "HAPPY";
-
-        }
-        //UC-2 Using Try Catch Blocks to Handle Null Exception.
-        public string AnalyseMood()
+    /// <summary>
+    /// AnalyseMood Function To Check The Mood And Respond HAPPY or SAD.
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns></returns>
+    public string AnalyseMood()
+    {
+        try
         {
-            try
+            if (this.message.Contains("Sad"))
             {
-                if (message.ToLower().Contains("sad"))
-                    return "SAD";
-                else return "HAPPY";
+                return "SAD";
             }
-            catch (NullReferenceException)
+            else
             {
                 return "HAPPY";
             }
-
         }
-
+        catch
+        {
+            return "HAPPY";
+        }
     }
+
 }
