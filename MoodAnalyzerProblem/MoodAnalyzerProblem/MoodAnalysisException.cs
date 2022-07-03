@@ -14,7 +14,7 @@ namespace MoodAnalyzer
         /// </summary>
         public enum ExceptionType
         {
-            ENTERED_NULL, ENTERED_EMPTY
+            ENTERED_NULL, ENTERED_EMPTY, NO_SUCH_FIELD, NO_SUCH_METHOD, NO_SUCH_CLASS, OBJECT_CREATION_ISSUE
         }
 
         //Creating 'type' variable of type ExceptionType
