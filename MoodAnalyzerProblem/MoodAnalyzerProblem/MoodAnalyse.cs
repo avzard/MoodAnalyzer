@@ -48,7 +48,7 @@ public class MoodAnalyse
         }
         catch (NullReferenceException exception)
         {
-            throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.ENTERED_NULL, "Please Enter Proper Mood");
+            throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.ENTERED_NULL, "Can Not Set Null To Field");
         }
     }
 
