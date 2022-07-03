@@ -51,4 +51,11 @@ public class MoodAnalyse
             throw new MoodAnalysisException(MoodAnalysisException.ExceptionType.ENTERED_NULL, "Please Enter Proper Mood");
         }
     }
+
+    public Boolean equals(object anyObject)
+    {
+        if (this.message.Equals(((MoodAnalyse)anyObject).message))
+            return true;
+        return false;
+    }
 }
